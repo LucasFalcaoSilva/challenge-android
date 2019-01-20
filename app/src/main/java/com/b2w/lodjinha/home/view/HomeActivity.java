@@ -14,6 +14,7 @@ import com.b2w.lodjinha.R;
 import com.b2w.lodjinha.home.contract.HomeMVP;
 import com.b2w.lodjinha.home.presenter.HomePresenter;
 
+import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
@@ -34,6 +35,11 @@ public class HomeActivity extends AppCompatActivity
 
     @ViewById(R.id.drawer_layout)
     protected DrawerLayout drawerLayout;
+
+    @AfterInject
+    public void iniciarHome(){
+        homePresenter.seView(this);
+    }
 
     @AfterViews
     public void carregarHome() {
