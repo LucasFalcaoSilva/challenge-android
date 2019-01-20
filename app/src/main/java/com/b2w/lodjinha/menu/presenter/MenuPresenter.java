@@ -1,34 +1,34 @@
-package com.b2w.lodjinha.home.presenter;
+package com.b2w.lodjinha.menu.presenter;
 
 import android.content.Context;
 
-import com.b2w.lodjinha.home.contract.HomeMVP;
+import com.b2w.lodjinha.menu.contract.MenuMVP;
 import com.b2w.lodjinha.sobre.view.SobreFragment_;
 
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 
 @EBean
-public class HomePresenter implements HomeMVP.HomePresenter {
+public class MenuPresenter implements MenuMVP.HomePresenter {
 
-    private HomeMVP.HomeView homeView;
+    private MenuMVP.HomeView menuView;
 
 
     @RootContext
     protected Context mContext;
 
     @Override
-    public void seView(HomeMVP.HomeView homeView) {
-        this.homeView = homeView;
+    public void seView(MenuMVP.HomeView homeView) {
+        this.menuView = homeView;
     }
 
     @Override
     public void carregarFragmentHome() {
-        homeView.trocarFragment(null);
+        menuView.trocarFragment(null);
     }
 
     @Override
     public void carregarFragmentSobre() {
-        homeView.trocarFragment(SobreFragment_.builder().build());
+        menuView.trocarFragment(SobreFragment_.builder().build());
     }
 }

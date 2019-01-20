@@ -1,4 +1,4 @@
-package com.b2w.lodjinha.home.view;
+package com.b2w.lodjinha.menu.view;
 
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,8 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.b2w.lodjinha.R;
-import com.b2w.lodjinha.home.contract.HomeMVP;
-import com.b2w.lodjinha.home.presenter.HomePresenter;
+import com.b2w.lodjinha.menu.contract.MenuMVP;
+import com.b2w.lodjinha.menu.presenter.MenuPresenter;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -21,11 +21,11 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_home)
-public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, HomeMVP.HomeView {
+public class MenuActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, MenuMVP.HomeView {
 
     @Bean
-    protected HomePresenter homePresenter;
+    protected MenuPresenter menuPresenter;
 
     @ViewById(R.id.toolbar)
     protected Toolbar toolbar;
@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity
 
     @AfterInject
     public void iniciarHome(){
-        homePresenter.seView(this);
+        menuPresenter.seView(this);
     }
 
     @AfterViews
@@ -74,9 +74,9 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            homePresenter.carregarFragmentHome();
+            menuPresenter.carregarFragmentHome();
         } else if (id == R.id.nav_about) {
-            homePresenter.carregarFragmentSobre();
+            menuPresenter.carregarFragmentSobre();
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
