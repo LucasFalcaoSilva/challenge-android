@@ -3,15 +3,15 @@ package com.b2w.lodjinha.menu.contract;
 import android.support.v4.app.Fragment;
 
 public interface MenuMVP {
-    interface HomePresenter{
+    interface MenuPresenter {
 
-        void seView(HomeView homeView);
+        void seView(MenuView menuView);
 
         void carregarFragmentHome();
 
         void carregarFragmentSobre();
     }
-    interface HomeView{
+    interface MenuView {
 
         void carregarMenuLateral();
 

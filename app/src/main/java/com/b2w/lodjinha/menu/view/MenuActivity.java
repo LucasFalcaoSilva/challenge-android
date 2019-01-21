@@ -20,9 +20,9 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
-@EActivity(R.layout.activity_home)
+@EActivity(R.layout.activity_menu)
 public class MenuActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MenuMVP.HomeView {
+        implements NavigationView.OnNavigationItemSelectedListener, MenuMVP.MenuView {
 
     @Bean
     protected MenuPresenter menuPresenter;
