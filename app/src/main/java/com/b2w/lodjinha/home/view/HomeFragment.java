@@ -3,8 +3,12 @@ package com.b2w.lodjinha.home.view;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.b2w.lodjinha.R;
 import com.b2w.lodjinha.home.contract.HomeMVP;
@@ -35,6 +39,12 @@ public class HomeFragment extends Fragment implements HomeMVP.HomeView {
     @ViewById(R.id.rvProdutos)
     protected RecyclerView rvProdutos;
 
+    @ViewById(R.id.pg_produtos)
+    protected ProgressBar pgProdutos;
+
+    @ViewById(R.id.pg_categorias)
+    protected ProgressBar pgCategorias;
+
     @Bean
     protected HomePresenter homePresenter;
 
@@ -45,11 +55,21 @@ public class HomeFragment extends Fragment implements HomeMVP.HomeView {
 
     @AfterViews
     public void carregarBanner() {
+        pgCategorias.setVisibility(View.VISIBLE);
+        pgProdutos.setVisibility(View.VISIBLE);
+        rvProdutos.setVisibility(View.GONE);
+        rvCategorias.setVisibility(View.GONE);
+
         tabLayout.setupWithViewPager(mImageViewPager, true);
         homePresenter.carregarHome();
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        rvCategorias.setLayoutManager(layoutManager);
+        rvCategorias.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false) );
+        rvCategorias.setItemAnimator(new DefaultItemAnimator());
+        rvCategorias.setHasFixedSize(true);
+
+        rvProdutos.setLayoutManager( new LinearLayoutManager(getContext()));
+        rvProdutos.setItemAnimator(new DefaultItemAnimator());
+        rvProdutos.setHasFixedSize(true);
     }
 
     @Override
@@ -64,6 +84,8 @@ public class HomeFragment extends Fragment implements HomeMVP.HomeView {
     public void carregarCategoriaAdapter(CategoriaAdapter mCategoriaAdapter) {
         rvCategorias.setAdapter(mCategoriaAdapter);
         mCategoriaAdapter.notifyDataSetChanged();
+        pgCategorias.setVisibility(View.GONE);
+        rvCategorias.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -71,5 +93,8 @@ public class HomeFragment extends Fragment implements HomeMVP.HomeView {
     public void carregarProdutosAdapter(ProdutoAdapter mProdutoAdapter) {
         rvProdutos.setAdapter(mProdutoAdapter);
         mProdutoAdapter.notifyDataSetChanged();
+
+        pgProdutos.setVisibility(View.GONE);
+        rvProdutos.setVisibility(View.VISIBLE);
     }
 }

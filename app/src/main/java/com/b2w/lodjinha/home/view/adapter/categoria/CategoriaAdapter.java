@@ -20,7 +20,7 @@ public class CategoriaAdapter extends BaseRecyclerAdapter<Categoria> {
 
     @Override
     public void onBindViewHolder(ViewWrapper holder, int position) {
-        RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         holder.getView().setLayoutParams(lp);
 
         ((CategoriaItem) holder.getView()).bind(items.get(position), onItemClickListener);

@@ -50,6 +50,9 @@ public class CategoriaItem extends LinearLayout {
     public void bind(Categoria categoria, BaseRecyclerAdapter.OnItemClickListener<Categoria> onItemClickListener) {
         Picasso.get()
                 .load(categoria.getUrlImagem())
+                .centerCrop().resize(100,100)
+                .placeholder(R.mipmap.ic_wait)
+                .error(R.mipmap.ic_launcher)
                 .into(imgCategoria);
         txtCategoria.setText(categoria.getDescricao());
     }

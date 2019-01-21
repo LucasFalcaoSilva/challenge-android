@@ -47,6 +47,7 @@ public class MenuActivity extends AppCompatActivity
 
         carregarMenuLateral();
 
+        menuPresenter.carregarFragmentHome();
     }
 
     @Override

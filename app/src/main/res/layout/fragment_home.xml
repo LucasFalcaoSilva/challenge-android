@@ -8,7 +8,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="150dp">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/pagerIamgens"
@@ -39,6 +39,12 @@
         android:background="@color/Greyish_brown"
         android:layout_height="1dp"/>
 
+    <ProgressBar
+        android:id="@+id/pg_categorias"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvCategorias"
         android:layout_width="match_parent"
@@ -62,10 +68,15 @@
         android:background="@color/Greyish_brown"
         android:layout_height="1dp"/>
 
+    <ProgressBar
+        android:id="@+id/pg_produtos"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvProdutos"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="100dp"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
