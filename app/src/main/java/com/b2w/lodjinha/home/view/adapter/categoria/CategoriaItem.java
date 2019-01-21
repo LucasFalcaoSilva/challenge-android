@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.b2w.lodjinha.R;
@@ -30,6 +31,8 @@ public class CategoriaItem extends LinearLayout {
     @ViewById(R.id.txtCategoria)
     protected TextView txtCategoria;
 
+    @ViewById(R.id.rl_principal)
+    protected RelativeLayout rlPrincipal;
 
     public CategoriaItem(@NonNull Context context) {
         super(context);
@@ -47,13 +50,22 @@ public class CategoriaItem extends LinearLayout {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    public void bind(Categoria categoria, BaseRecyclerAdapter.OnItemClickListener<Categoria> onItemClickListener) {
+    public void bind(final Categoria categoria,final BaseRecyclerAdapter.OnItemClickListener<Categoria> onItemClickListener) {
         Picasso.get()
                 .load(categoria.getUrlImagem())
                 .centerCrop().resize(100,100)
                 .placeholder(R.mipmap.ic_wait)
                 .error(R.mipmap.ic_launcher)
                 .into(imgCategoria);
+
         txtCategoria.setText(categoria.getDescricao());
+
+        rlPrincipal.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onItemClick(categoria);
+            }
+        });
+
     }
 }

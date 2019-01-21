@@ -27,10 +27,10 @@ public interface LodjinhaRest {
     Call<DataProduto> obterProdutoMaisVendidos();
 
     @GET("/produto")
-    Call<DataProduto> obterProdutoCategoria(@Path("categoriaId") Long idCategoria);
+    Call<DataProduto> obterProdutoCategoria(@Query("categoriaId") Long idCategoria);
 
     @GET("/produto/{produtoId}")
-    Call<Produto> obterProdutoId(@Query("produtoId") Long idProduto);
+    Call<Produto> obterProdutoId(@Path("produtoId") Long idProduto);
 
     @POST("/produto/{produtoId}")
     Call<Resultado> reservarProduto(@Path("produtoId") Long idProduto);

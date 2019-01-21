@@ -1,6 +1,10 @@
 package com.b2w.lodjinha.home.presenter;
 
+import android.content.Context;
+
+import com.b2w.lodjinha.base.adapter.BaseRecyclerAdapter;
 import com.b2w.lodjinha.base.service.CallBackGeneric;
+import com.b2w.lodjinha.categoria.view.CategoriaActivity_;
 import com.b2w.lodjinha.home.contract.HomeMVP;
 import com.b2w.lodjinha.home.view.adapter.banner.SlidingImageAdapter;
 import com.b2w.lodjinha.home.view.adapter.categoria.CategoriaAdapter;
@@ -14,6 +18,7 @@ import com.b2w.lodjinha.rest.model.Produto;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
+import org.androidannotations.annotations.RootContext;
 
 import java.util.List;
 
@@ -21,6 +26,9 @@ import java.util.List;
 public class HomePresenter implements HomeMVP.HomePresenter {
 
     private HomeMVP.HomeView view;
+
+    @RootContext
+    protected Context mContext;
 
     @Bean
     protected BannerRepository mBannerRepository;
@@ -74,6 +82,15 @@ public class HomePresenter implements HomeMVP.HomePresenter {
             @Override
             public void callBackSuccess(List<Categoria> response) {
                 mCategoriaAdapter.setItemsLista(response);
+                mCategoriaAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<Categoria>() {
+                    @Override
+                    public void onItemClick(Categoria item) {
+                        CategoriaActivity_.intent(mContext)
+                                .idCategoria(item.getId())
+                                .nomeCategoria(item.getDescricao())
+                                .start();
+                    }
+                });
                 view.carregarCategoriaAdapter(mCategoriaAdapter);
             }
 
